@@ -9,7 +9,6 @@ public class FruitSpawner : MonoBehaviour {
     public Transform[] spawnPoints;
     public int ratio = 9;
     private GameObject timer;
-    private Timer timerScript;
 
 	public float minDelay = .1f;
 	public float maxDelay = 1f;
@@ -17,15 +16,14 @@ public class FruitSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = GameObject.FindWithTag("Timer");
-        timerScript = timer.GetComponent<Timer>();
     }
 
     void Update()
     {
-        if (timerScript.isGameStart == true && timerScript.gameStarted == false)
+        if (GameManager.instance.isGameStart == true && GameManager.instance.gameStarted == false)
         {
             StartCoroutine(SpawnFruits());
-            timerScript.gameStarted = true;
+            GameManager.instance.gameStarted = true;
         }
 
     }
@@ -52,7 +50,7 @@ public class FruitSpawner : MonoBehaviour {
                 GameObject spawnedBug = Instantiate(pests[pestIndex], spawnPoint.position, spawnPoint.rotation);
                 Destroy(spawnedBug, 5f);
             }
-            if(timerScript.isGameStart == false)
+            if(GameManager.instance.isGameStart == false)
             {
                 break;
             }

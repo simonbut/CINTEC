@@ -26,7 +26,8 @@ public class Blade : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0))
 		{
 			StartCutting();
 		} else if (Input.GetMouseButtonUp(0))
@@ -48,12 +49,9 @@ public class Blade : MonoBehaviour {
 
 		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime;
 		if (velocity > minCuttingVelocity)
-		{
 			circleCollider.enabled = true;
-		} else
-		{
+		else
 			circleCollider.enabled = false;
-		}
 
 		previousPosition = newPosition;
 	}

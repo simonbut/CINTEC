@@ -10,14 +10,12 @@ public class Score : MonoBehaviour
     public GameObject scoreGamObject;
     private TargetScore targetScoreScript;
     private bool pass;
-    private Timer timerScript;
     private Text txt;
 
     // Start is called before the first frame update
     void Start()
     {
         txt = GetComponent<Text>();
-        timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         targetScoreScript = scoreGamObject.GetComponent<TargetScore>();
     }
 
@@ -44,7 +42,7 @@ public class Score : MonoBehaviour
             score = 0;
         }
         txt.text = "Current Score: " + score;
-        if(timerScript.isGameStart != true && timerScript.remainingTime == 0)
+        if(GameManager.instance.isGameStart != true && GameManager.instance.remainingTime == 0)
         {
             textGameObject.SetActive(true);
             if(score < targetScoreScript.targetScore)
